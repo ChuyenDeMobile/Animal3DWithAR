@@ -12,7 +12,8 @@ public enum eScreenType
 public enum ePopupType
 {
     NONE,
-    SNAP_SHOOT
+    SNAP_SHOOT,
+    EXIT
 }
 
 [System.Serializable]

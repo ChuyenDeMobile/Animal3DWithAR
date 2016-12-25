@@ -8,6 +8,7 @@ public class SwapCamera : BaseClickButton {
     private bool isBack = true;
     public override void OnClicked()
     {
+        base.OnClicked();
         isBack = !isBack;
         if(isBack)
         {
@@ -36,7 +37,7 @@ public class SwapCamera : BaseClickButton {
         CameraDevice.Instance.Deinit();
         if (CameraDevice.Instance.Init(direction))
         {
-            Debug.Log("change ok!!");
+            //Debug.Log("change ok!!");
         }
 
         CameraDevice.Instance.Start();

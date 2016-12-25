@@ -15,7 +15,7 @@ namespace Vuforia
                                                 ITrackableEventHandler
     {
 
-        public GameObject objChildAnimal;
+        public GameObject m_objAnimal;
 
         #region PRIVATE_MEMBER_VARIABLES
  
@@ -35,8 +35,8 @@ namespace Vuforia
                 mTrackableBehaviour.RegisterTrackableEventHandler(this);
             }
 
-            objChildAnimal = transform.GetChild(0).gameObject;
-            if (!objChildAnimal)
+            m_objAnimal = transform.GetChild(0).gameObject;
+            if (!m_objAnimal)
             {
 #if UNITY_EDITOR
                 Debug.Log("thang nay khong co thang con!");
@@ -44,7 +44,7 @@ namespace Vuforia
             }
             else
             {
-                objChildAnimal.SetActive(false);
+                m_objAnimal.SetActive(false);
             }
 
         }
@@ -82,24 +82,24 @@ namespace Vuforia
         public void OnTrackingFound()
         {
 
-            if (objChildAnimal && !objChildAnimal.activeInHierarchy)
+            if (m_objAnimal && !m_objAnimal.activeInHierarchy)
             {
-                objChildAnimal.SetActive(true);
+                m_objAnimal.SetActive(true);
             }
-            Controller.Instance.m_listAnimalTracked.Add(objChildAnimal);
-            Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
+            Controller.Instance.AddAnimalTracked(m_objAnimal);
+            ManagerObject.Instance.SpawnObjectByType(ObjectType.PARTICLE,PoolName.pool);
+            //Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
         }
 
 
         public void OnTrackingLost()
         {
-            if (objChildAnimal && objChildAnimal.activeInHierarchy)
+            if (m_objAnimal && m_objAnimal.activeInHierarchy)
             {
-                objChildAnimal.SetActive(false);
+                m_objAnimal.SetActive(false);
             }
-            //GameController.Instance.currObjectTracked = null;
-
-            Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
+            Controller.Instance.RemoveAnimalTracked(m_objAnimal);
+            //Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
         }
 
         #endregion // PRIVATE_METHODS

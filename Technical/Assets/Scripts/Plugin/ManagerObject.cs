@@ -5,8 +5,8 @@ using PathologicalGames;
 
 public enum ObjectType
 {
-
-    IMG_ANIMAL = 0
+    PARTICLE,
+    IMG_ANIMAL
 }
 
 [System.Serializable]
@@ -18,7 +18,7 @@ public class ObjectConfig
 
 public enum PoolName
 {
-    Object,Bullet,UI
+    pool
 }
 
 public class ManagerObject : MonoSingleton<ManagerObject>

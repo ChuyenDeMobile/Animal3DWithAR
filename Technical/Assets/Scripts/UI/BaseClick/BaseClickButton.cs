@@ -11,7 +11,6 @@ public class BaseClickButton : MonoBehaviour {
 
     public virtual void OnClicked()
     {
-
     }
 
     public void CallWhenClick()
