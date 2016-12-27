@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using UnityEngine.UI;
 public enum _AudioType
 {
     ELEPHANT =1,
@@ -83,8 +83,20 @@ public class AudioManager : MonoSingleton<AudioManager> {
         }
     }
 
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public Image m_btnSettingSound;
+    public Sprite m_sprSound;
+    public Sprite m_sprSoundMute;
+
+    public void SettingSound(bool _isMute = true)
+    {
+        if(_isMute)
+        {
+            m_btnSettingSound.sprite = m_sprSoundMute;
+        }
+        else
+        {
+            m_btnSettingSound.sprite = m_sprSound;
+        }
+        a_AudioSource.mute = _isMute;
+    }
 }
