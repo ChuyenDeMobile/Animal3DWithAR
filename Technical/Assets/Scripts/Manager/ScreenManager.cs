@@ -6,6 +6,8 @@ using System;
 
 public enum eScreenType
 {
+    MENU,
+    GAME_PLAY,
     NONE
 }
 
@@ -69,7 +71,7 @@ public class ScreenManager : MonoSingleton<ScreenManager>
     void Start()
     {
         CurrentPopup = ePopupType.NONE;
-        
+        ShowScreenByType(eScreenType.MENU);
     }
 
     private void InitDictionary()

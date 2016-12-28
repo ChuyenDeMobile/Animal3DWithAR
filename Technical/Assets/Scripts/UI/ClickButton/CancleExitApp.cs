@@ -4,7 +4,13 @@ using System.Collections;
 public class CancleExitApp : BaseClickButton {
     public override void OnClicked()
     {
-        ScreenManager.Instance.HideCurrentPopup();
+        Popup.Instance.m_CallBackCloseHandle = HidePopup;
+        Popup.Instance.ClosePopup();
         base.OnClicked();
+    }
+
+    public void HidePopup()
+    {
+        ScreenManager.Instance.HideCurrentPopup();
     }
 }

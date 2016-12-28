@@ -13,7 +13,6 @@ public class UpOptionButton : BaseClickButton {
 	 void Awake()
      {
         m_anchorPositionContainStart = m_rectrfContainButton.anchoredPosition;
-        Debug.Log(m_rectrfContainButton.rect.height);
         m_anchorToContain = new Vector2(m_anchorPositionContainStart.x,m_anchorPositionContainStart.y-(m_rectrfContainButton.rect.width+50));
 
         m_rectrfContainButton.anchoredPosition = m_anchorToContain;
@@ -31,7 +30,7 @@ public class UpOptionButton : BaseClickButton {
             //move up
             m_rectrfContainButton.DOAnchorPos(m_anchorPositionContainStart, 0.5f).OnComplete(CallBackMoveUp);
         }
-        
+        base.OnClicked();
     } 
     private void CallBackMoveUp()
     {

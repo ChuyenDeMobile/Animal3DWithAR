@@ -34,7 +34,6 @@ namespace Vuforia
             {
                 mTrackableBehaviour.RegisterTrackableEventHandler(this);
             }
-
             m_objAnimal = transform.GetChild(0).gameObject;
             if (!m_objAnimal)
             {
@@ -77,29 +76,36 @@ namespace Vuforia
         #endregion // PUBLIC_METHODS
 
         #region PRIVATE_METHODS
-
-
         public void OnTrackingFound()
         {
-
+            if(!GameConfig.m_isStart)
+            {
+                return;
+            }
             if (m_objAnimal && !m_objAnimal.activeInHierarchy)
             {
                 m_objAnimal.SetActive(true);
             }
-            Controller.Instance.AddAnimalTracked(m_objAnimal);
+            Controller.Instance.AddAnimalTracked(m_objAnimal.transform.GetChild(0).gameObject);
             ManagerObject.Instance.SpawnObjectByType(ObjectType.PARTICLE,PoolName.pool);
-            //Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
         }
 
 
         public void OnTrackingLost()
         {
+            if (!GameConfig.m_isStart)
+            {
+                return;
+            }
             if (m_objAnimal && m_objAnimal.activeInHierarchy)
             {
                 m_objAnimal.SetActive(false);
             }
-            Controller.Instance.RemoveAnimalTracked(m_objAnimal);
-            //Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
+            if (m_objAnimal)
+            {
+                Controller.Instance.RemoveAnimalTracked(m_objAnimal.transform.GetChild(0).gameObject);
+
+            }
         }
 
         #endregion // PRIVATE_METHODS

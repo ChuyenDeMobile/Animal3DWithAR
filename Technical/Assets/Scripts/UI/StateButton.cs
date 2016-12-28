@@ -8,14 +8,21 @@ public class StateButton : MonoSingleton<StateButton> {
 
     public void DisableButton()
     {
-        m_btnSpeak.interactable = false;
-        m_btnZoomIn.interactable = false;
-        m_btnZoomOut.interactable = false;
+        if (m_btnSpeak && m_btnZoomIn && m_btnZoomOut)
+        {
+            m_btnSpeak.interactable = false;
+            m_btnZoomIn.interactable = false;
+            m_btnZoomOut.interactable = false;
+        }
     }
     public void EnableButton()
     {
-        m_btnSpeak.interactable = true;
-        m_btnZoomIn.interactable = true;
-        m_btnZoomOut.interactable = true;
+        if (m_btnSpeak && m_btnZoomIn && m_btnZoomOut)
+        {
+            m_btnSpeak.interactable = true;
+            m_btnZoomIn.interactable = true;
+            m_btnZoomOut.interactable = true;
+        }
+       
     }
 }

@@ -11,6 +11,7 @@ public class BaseClickButton : MonoBehaviour {
 
     public virtual void OnClicked()
     {
+        AudioManager.Instance.PlayAudioByType(_AudioType.BUTTON);
     }
 
     public void CallWhenClick()

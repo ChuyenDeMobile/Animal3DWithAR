@@ -18,9 +18,9 @@ public class InputHandler : MonoBehaviour {
             {
                 s_ObjectAnimal.Attack();
             }
-
-            _AudioType a_Audio = (_AudioType)System.Enum.Parse(typeof(_AudioType), o_Parent.name);
-            AudioManager.Instance.PlayAudioByType(a_Audio);
+            AudioManager.Instance.PlayAudioEnglishFromResoures(gameObject.name,false);
+            //_AudioType a_Audio = (_AudioType)System.Enum.Parse(typeof(_AudioType), o_Parent.name);
+            //AudioManager.Instance.PlayAudioByType(a_Audio);
         }
     }
 }

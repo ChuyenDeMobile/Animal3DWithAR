@@ -26,6 +26,7 @@ public class BaseAnimationManager : MonoBehaviour {
     private float timeOfAttack = 0;
     void Awake()
     {
+        InitGame();
         animationOfThis = gameObject.GetComponent<Animation>();
         //thoi gian attack cua object
         timeOfAttack = animationOfThis[_AnimationState.attack.ToString()].clip.length;
@@ -33,13 +34,20 @@ public class BaseAnimationManager : MonoBehaviour {
 
     void OnEnable()
     {
+        if(!GameConfig.m_isStart)
+        {
+            return;
+        }
         ResetAnimation();
         // set audio when tracked
         string name = gameObject.name;
-        _AudioType audioType = (_AudioType)System.Enum.Parse(typeof(_AudioType),name);
-        AudioManager.Instance.PlayAudioByType(audioType);
+        AudioManager.Instance.PlayAudioEnglishFromResoures(name, false);
+        onEnable();
     }
+    public virtual void onEnable()
+    {
 
+    }
     // ban dau animation 
     public void ResetAnimation()
     {
@@ -47,13 +55,11 @@ public class BaseAnimationManager : MonoBehaviour {
         StartCoroutine(RandomState());
     }
 
-    [ContextMenu("test!")]
     public IEnumerator RandomState()
     {
         while(true)
         {
             yield return new WaitForSeconds(UnityEngine.Random.Range(minLimiteTime, maxLimiteTime));
-            Debug.Log("change state!");
 
             do
             {
@@ -66,22 +72,22 @@ public class BaseAnimationManager : MonoBehaviour {
                 StopCoroutine(currStrState);
             }
 
-            switch (currState)
-            {
-                case _AnimationState.idle:
-                    currStrState = "UpdateIdle";
-                    break;
-                case _AnimationState.walk:
-                    currStrState = "UpdateWalk";
-                    break;
-                case _AnimationState.attack:
-                    currStrState = "UpdateAttack";
-                    break;
-                case _AnimationState.run:
-                    currStrState = "UpdateRun";
-                    break;
-            }
-            StartCoroutine(currStrState);
+            //switch (currState)
+            //{
+            //    case _AnimationState.idle:
+            //        currStrState = "UpdateIdle";
+            //        break;
+            //    case _AnimationState.walk:
+            //        currStrState = "UpdateWalk";
+            //        break;
+            //    case _AnimationState.attack:
+            //        currStrState = "UpdateAttack";
+            //        break;
+            //    case _AnimationState.run:
+            //        currStrState = "UpdateRun";
+            //        break;
+            //}
+            //StartCoroutine(currStrState);
             SetAnimationByType(currState);
         }
     }
@@ -109,12 +115,6 @@ public class BaseAnimationManager : MonoBehaviour {
         SetAnimationByType(_AnimationState.attack);
         Invoke("ResetAnimation", timeOfAttack - 0.1f);
     }
-
-
-	// Use this for initialization
-	void Start () {
-        InitGame();
-	}
 
     #region COROUTINES
     private IEnumerator UpdateRun()
