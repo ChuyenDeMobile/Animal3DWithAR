@@ -88,6 +88,7 @@ namespace Vuforia
             }
             Controller.Instance.AddAnimalTracked(m_objAnimal.transform.GetChild(0).gameObject);
             ManagerObject.Instance.SpawnObjectByType(ObjectType.PARTICLE,PoolName.pool);
+            
         }
 
 
@@ -100,6 +101,7 @@ namespace Vuforia
             if (m_objAnimal && m_objAnimal.activeInHierarchy)
             {
                 m_objAnimal.SetActive(false);
+                //SwitchMode.Instance.nameAnimal = "";
             }
             if (m_objAnimal)
             {

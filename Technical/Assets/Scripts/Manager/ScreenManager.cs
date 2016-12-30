@@ -8,6 +8,7 @@ public enum eScreenType
 {
     MENU,
     GAME_PLAY,
+    INTERACTIVE,
     NONE
 }
 
@@ -61,6 +62,8 @@ public class ScreenManager : MonoSingleton<ScreenManager>
             m_currentPopup = value;
         }
     }
+
+    
 
     // Use this for initialization
     void Awake()

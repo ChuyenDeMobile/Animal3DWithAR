@@ -8,6 +8,9 @@ public class Interactive : MonoSingleton<Interactive>
     public Transform transfParent;
     public GameObject btItem;
     public GameObject content;
+
+    public List<GameObject> vuforia;
+    
 	// Use this for initialization
 	void Start () {
         
@@ -53,6 +56,7 @@ public class Interactive : MonoSingleton<Interactive>
     {
         if (this.content.active == false)
         {
+            
             Vector3 pos = Input.mousePosition;
             this.transform.position = new Vector3(pos.x + 2, pos.y, 0);
             this.content.SetActive(true);
@@ -79,4 +83,6 @@ public class Interactive : MonoSingleton<Interactive>
     {
         this.content.SetActive(false);
     }
+    
+    
 }

@@ -57,6 +57,7 @@ public class Controller : MonoSingleton<Controller> {
         }
         StateButton.Instance.EnableButton();
         SetTextAnimalName(m_listAnimalTracked[m_listAnimalTracked.Count-1].name);
+        SwitchMode.Instance.nameAnimal = m_listAnimalTracked[m_listAnimalTracked.Count - 1].name;
     }
 
     public void RemoveAnimalTracked(GameObject _animal)
@@ -71,6 +72,9 @@ public class Controller : MonoSingleton<Controller> {
         {
             StateButton.Instance.DisableButton();
         }
+        SwitchMode.Instance.nameAnimal = "";
+        Interactive.Instance.OnHide();
+
     }
 
     public void PlayAudioWithAnimalName()
@@ -92,6 +96,7 @@ public class Controller : MonoSingleton<Controller> {
     public void SetTextAnimalName(string _animalName)
     {
         m_txtAnimalName.text = _animalName;
+       
         m_rectAnimalName.anchoredPosition = m_anchorMoveToOfAnimalName;
         m_rectAnimalName.DOAnchorPos(m_anchorStartOfAnimalName, 0.5f);
     }
