@@ -115,6 +115,7 @@ public class BaseAnimationManager : MonoBehaviour {
         SetAnimationByType(_AnimationState.attack);
         Invoke("ResetAnimation", timeOfAttack - 0.1f);
     }
+    
 
     #region COROUTINES
     private IEnumerator UpdateRun()
@@ -212,5 +213,14 @@ public class BaseAnimationManager : MonoBehaviour {
     public virtual void UpdateGame()
     {
         return;
+    }
+    public void SetAnimation(string state)
+    {
+        //this.animationOfThis.
+        animationOfThis.CrossFade(state);
+    }
+    public string GetName()
+    {
+        return this.gameObject.name;
     }
 }

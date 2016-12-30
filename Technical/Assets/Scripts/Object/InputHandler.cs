@@ -16,7 +16,9 @@ public class InputHandler : MonoBehaviour {
             BaseAnimationManager s_ObjectAnimal = o_Parent.GetComponent<BaseAnimationManager>();
             if(s_ObjectAnimal)
             {
-                s_ObjectAnimal.Attack();
+                //s_ObjectAnimal.Attack();
+                
+                Interactive.Instance.OnShow(s_ObjectAnimal);
             }
             AudioManager.Instance.PlayAudioEnglishFromResoures(gameObject.name,false);
             //_AudioType a_Audio = (_AudioType)System.Enum.Parse(typeof(_AudioType), o_Parent.name);
